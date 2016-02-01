@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Timothy Baxendale")]
 [assembly: AssemblyProduct("SimplyJSON")]
-[assembly: AssemblyCopyright("Copyright © Timothy Baxendale 2014-2015")]
+[assembly: AssemblyCopyright("Copyright © Timothy Baxendale 2014-2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
