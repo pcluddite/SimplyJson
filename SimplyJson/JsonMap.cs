@@ -19,118 +19,74 @@
  **/
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Text;
 
 namespace Tbax.Json
 {
     /// <summary>
-    /// This class represents a JSON object that contains a set of keys that correspond to an assigned value
+    /// This class represents a Json object that contains a set of keys that correspond to an assigned value
     /// </summary>
     public class JsonMap : JsonObject, IDictionary<string, IJsonObject>
     {
         private Dictionary<string, IJsonObject> dict;
 
+        /// <summary>
+        /// Initializes a new instance of the JsonMap class that is empty, has the default initial capacity, and uses the default equality comparer for the string.
+        /// </summary>
         public JsonMap()
         {
             dict = new Dictionary<string, IJsonObject>();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the JsonMap class that is empty, has the specified initial capacity, and uses the default equality comparer for the key type.
+        /// </summary>
+        /// <param name="capacity">The initial number of elements that the JsonMap can contain.</param>
+        /// <exception cref="ArgumentOutOfRangeException">capacity is less than 0.</exception>
         public JsonMap(int capacity)
         {
             dict = new Dictionary<string, IJsonObject>(capacity);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the JsonMap class that is empty, has the default initial capacity, and uses the specified IEqualityComparer&lt;string&gt;
+        /// </summary>
+        /// <param name="comparer"></param>
         public JsonMap(IEqualityComparer<string> comparer)
         {
             dict = new Dictionary<string, IJsonObject>(comparer);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the JsonMap class that contains elements copied from the specified IDictionary&lt;string, IJsonObject&gt; and uses the default equality comparer for the key type.
+        /// </summary>
+        /// <param name="dictionary"></param>
         public JsonMap(IDictionary<string, IJsonObject> dictionary)
         {
             dict = new Dictionary<string, IJsonObject>(dictionary);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the JsonMap class that is empty, has the specified initial capacity, and uses the specified IEqualityComparer&lt;string&gt;.
+        /// </summary>
+        /// <param name="capacity"></param>
+        /// <param name="comparer"></param>
         public JsonMap(int capacity, IEqualityComparer<string> comparer)
         {
             dict = new Dictionary<string, IJsonObject>(capacity, comparer);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the JsonMap class that contains elements copied from the specified IDictionary&lt;string, IJsonObject&gt; and uses the specified IEqualityComparer&lt;string&gt;
+        /// </summary>
+        /// <param name="dictionary"></param>
+        /// <param name="comparer"></param>
         public JsonMap(IDictionary<string, IJsonObject> dictionary, IEqualityComparer<string> comparer)
         {
             dict = new Dictionary<string, IJsonObject>(dictionary, comparer);
         }
-
-        /// <summary>
-        /// Sets the IJsonObject at a given key. If the key does not exist, one is added.
-        /// </summary>
-        /// <param name="key">The key to locate</param>
-        /// <param name="jObj">The IJsonObject value for the key</param>
-        /// <returns>The former value of the JsonMap at that key. If the object did not previously exist, returns null.</returns>
-        public IJsonObject Put(string key, IJsonObject jObj)
-        {
-            return __put(key, jObj);
-        }
-
-        public IJsonObject Put(string key, JsonArrayList jObj)
-        {
-            return __put(key, jObj);
-        }
-
-        public IJsonObject Put(string key, JsonBoolean jObj)
-        {
-            return __put(key, jObj);
-        }
-
-        public IJsonObject Put(string key, JsonDouble jObj)
-        {
-            return __put(key, jObj);
-        }
-
-        public IJsonObject Put(string key, JsonMap jObj)
-        {
-            return __put(key, jObj);
-        }
-
-        public IJsonObject Put(string key, JsonObject jObj)
-        {
-            return __put(key, jObj);
-        }
-
-        public IJsonObject Put(string key, JsonString jObj)
-        {
-            return __put(key, jObj);
-        }
-
-        private IJsonObject __put(string key, IJsonObject jObj)
-        {
-            IJsonObject ret;
-            if (ContainsKey(key)) {
-                ret = this[key];
-                this[key] = jObj;
-            }
-            else {
-                ret = null;
-                Add(key, jObj);
-            }
-            return ret;
-        }
-
-        /// <summary>
-        /// Gets an IJsonObject at a given key. If the key does not exist, null is returned.
-        /// </summary>
-        /// <param name="key">the key to locate</param>
-        /// <returns>the IJsonObject if found, otherwise null</returns>
-        public IJsonObject Get(string key)
-        {
-            IJsonObject val;
-            if (TryGetValue(key, out val)) {
-                return val;
-            }
-            else {
-                return null;
-            }
-        }
-
+        
         /// <summary>
         /// Initializes a JsonMap object from given JSON. This will return the first valid object map.
         /// </summary>
@@ -148,10 +104,10 @@ namespace Tbax.Json
                 if (value.StartsWith(":")) {
                     value = value.Remove(0, 1).Trim();
                     if (value.Equals("")) {
-                        jObject.Put(key, new JsonNull());
+                        jObject[key] = new JsonNull();
                     }
                     else {
-                        jObject.Put(key, JsonParser.ExtractValue(value));
+                        jObject[key] = JsonParser.ExtractValue(value);
                     }
                 }
                 else {
@@ -218,31 +174,61 @@ namespace Tbax.Json
             return json.ToString();
         }
 
+        /// <summary>
+        /// Adds an item with the provided key and value to the JsonMap
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void Add(string key, IJsonObject value)
         {
             __add(key, value);
         }
 
+        /// <summary>
+        /// Adds an item with the provided key and value to the JsonMap
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void Add(string key, JsonArrayList value)
         {
             __add(key, value);
         }
 
+        /// <summary>
+        /// Adds an item with the provided key and value to the JsonMap
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void Add(string key, JsonBoolean value)
         {
             __add(key, value);
         }
 
+        /// <summary>
+        /// Adds an item with the provided key and value to the JsonMap
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void Add(string key, JsonDouble value)
         {
             __add(key, value);
         }
 
+        /// <summary>
+        /// Adds an item with the provided key and value to the JsonMap
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void Add(string key, JsonMap value)
         {
             __add(key, value);
         }
 
+        /// <summary>
+        /// Adds an item with the provided key and value to the JsonMap
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void Add(string key, JsonString value)
         {
             __add(key, value);
@@ -253,31 +239,58 @@ namespace Tbax.Json
             dict.Add(key, value);
         }
 
+        /// <summary>
+        /// Determines whether the JsonMap contains an element with the specified key.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public bool ContainsKey(string key)
         {
             return dict.ContainsKey(key);
         }
 
+        /// <summary>
+        /// Gets a collection containing the keys in the JsonMap
+        /// </summary>
         public ICollection<string> Keys
         {
             get { return dict.Keys; }
         }
 
+        /// <summary>
+        /// Removes the value with the specified key from the JsonMap
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public bool Remove(string key)
         {
             return dict.Remove(key);
         }
 
+        /// <summary>
+        /// Gets the value associated with the specified key.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public bool TryGetValue(string key, out IJsonObject value)
         {
             return dict.TryGetValue(key, out value);
         }
 
+        /// <summary>
+        /// Gets a collection containing the values in the JsonMap
+        /// </summary>
         public ICollection<IJsonObject> Values
         {
             get { return dict.Values; }
         }
 
+        /// <summary>
+        /// Gets or sets the element with the specified key.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public IJsonObject this[string key]
         {
             get {
@@ -293,6 +306,9 @@ namespace Tbax.Json
             ((IDictionary<string, IJsonObject>)dict).Add(item);
         }
 
+        /// <summary>
+        /// Removes all items from the JsonMap
+        /// </summary>
         public void Clear()
         {
             dict.Clear();
@@ -308,6 +324,9 @@ namespace Tbax.Json
             ((IDictionary<string, IJsonObject>)dict).CopyTo(array, arrayIndex);
         }
 
+        /// <summary>
+        /// Gets the number of key/value pairs contained in the JsonMap
+        /// </summary>
         public int Count
         {
             get { return dict.Count; }
@@ -323,12 +342,16 @@ namespace Tbax.Json
             return ((IDictionary<string, IJsonObject>)dict).Remove(item);
         }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<KeyValuePair<string, IJsonObject>> GetEnumerator()
         {
             return dict.GetEnumerator();
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return dict.GetEnumerator();
         }
