@@ -63,7 +63,7 @@ namespace Tbax.Json
                     return new JsonNull();
                 }
                 else {
-                    throw JsonException.InvalidFormat();
+                    throw JsonException.UnexpectedJson();
                 }
             }
 

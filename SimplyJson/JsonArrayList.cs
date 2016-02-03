@@ -53,7 +53,7 @@ namespace Tbax.Json
         {
             JsonArrayList jArray = new JsonArrayList();
 
-            List<string> rawItems = JsonParser.ExtractCollection(json, new char[] { '[', ']' }, new char[] { '{', '}' });
+            List<string> rawItems = JsonParser.ExtractArray(json);
 
             foreach (string raw in rawItems) {
                 jArray.Add(JsonParser.ExtractValue(raw));

@@ -22,7 +22,7 @@ using System.Runtime.Serialization;
 
 namespace Tbax.Json
 {
-    public class JsonException : Exception
+    public class JsonException : FormatException
     {
         public JsonException(string message)
             : base(message)
@@ -39,14 +39,24 @@ namespace Tbax.Json
         {
         }
 
-        internal static JsonException InvalidFormat()
+        internal static JsonException UnexpectedJson()
         {
-            return new JsonException("string could not be parsed", new FormatException());
+            return new JsonException("The string did not contain the expected json.");
+        }
+
+        internal static JsonException InvalidCollection()
+        {
+            return new JsonException("The format of the collection was invalid.");
+        }
+
+        internal static JsonException InvalidElementInCollection(string elem)
+        {
+            return new JsonException(string.Format("Unable to parse an element in the collection - {0}", elem));
         }
 
         internal static JsonException EndOfFile(char c)
         {
-            return new JsonException("missing closing '" + c + "'", new FormatException());
+            return new JsonException("missing closing '" + c + "'");
         }
     }
 }

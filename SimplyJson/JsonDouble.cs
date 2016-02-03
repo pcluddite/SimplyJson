@@ -58,7 +58,7 @@ namespace Tbax.Json
                 return new JsonDouble(d);
             }
             else {
-                throw new FormatException("The string did not contain the expected JSON");
+                throw JsonException.UnexpectedJson();
             }
         }
 

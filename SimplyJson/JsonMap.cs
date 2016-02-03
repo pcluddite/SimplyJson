@@ -96,14 +96,14 @@ namespace Tbax.Json
         {
             JsonMap jObject = new JsonMap();
 
-            List<string> rawItems = JsonParser.ExtractCollection(json, new char[] { '{', '}' }, new char[] { '[', ']' });
+            List<string> rawItems = JsonParser.ExtractMap(json);
 
             foreach (string raw in rawItems) {
                 string key = JsonString.FromJson(raw).ToString();
                 string value = raw.Substring(key.Length + 2).Trim(); // Acount for the quotes removed
                 if (value.StartsWith(":")) {
                     value = value.Remove(0, 1).Trim();
-                    if (value.Equals("")) {
+                    if (value == string.Empty) {
                         jObject[key] = new JsonNull();
                     }
                     else {
@@ -111,7 +111,7 @@ namespace Tbax.Json
                     }
                 }
                 else {
-                    throw new Exception("Could not extract key value pair in item collection!");
+                    throw JsonException.InvalidElementInCollection(value);
                 }
             }
 

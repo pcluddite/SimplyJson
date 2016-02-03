@@ -77,7 +77,7 @@ namespace Tbax.Json
                 return new JsonBoolean(b);
             }
             else {
-                throw new FormatException("The string did not contain the expected json");
+                throw JsonException.UnexpectedJson();
             }
         }
 

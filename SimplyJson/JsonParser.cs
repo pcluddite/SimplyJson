@@ -26,7 +26,7 @@ namespace Tbax.Json
     {
         internal static IJsonObject ExtractValue(string jsonString)
         {
-            if (jsonString.Equals("")) {
+            if (string.IsNullOrEmpty(jsonString)) {
                 return JsonObject.Null;
             }
             for (int index = 0; index < jsonString.Length; index++) {
@@ -50,10 +50,20 @@ namespace Tbax.Json
                     return JsonDouble.FromJson(AdvanceToNextDelim(jsonString.Substring(index)));
                 }
             }
-            throw JsonException.InvalidFormat();
+            throw JsonException.InvalidCollection();
         }
 
-        internal static List<string> ExtractCollection(string text, char[] real, char[] other)
+        internal static List<string> ExtractArray(string text)
+        {
+            return ExtractCollection(text, new char[] { '[', ']' }, new char[] { '{', '}' });
+        }
+
+        internal static List<string> ExtractMap(string text)
+        {
+            return ExtractCollection(text, new char[] { '{', '}' }, new char[] { '[', ']' });
+        }
+
+        private static List<string> ExtractCollection(string text, char[] real, char[] other)
         {
             List<string> rawElems = new List<string>();
             char inQuote = '\0';
