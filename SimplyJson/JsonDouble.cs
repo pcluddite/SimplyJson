@@ -24,7 +24,7 @@ namespace Tbax.Json
     /// <summary>
     /// A class representation of a number value in JSON. This class can perform most operations directly as a double implicitly.
     /// </summary>
-    public sealed class JsonDouble : JsonObject
+    public struct JsonDouble : IJsonObject
     {
         private double innerDouble; // REMEMBER NOT TO USE IMPLICIT CONVERSIONS IN THIS CLASS (for safety reasons)
 
@@ -67,7 +67,7 @@ namespace Tbax.Json
         /// </summary>
         /// <param name="options">the JsonWriterOptions to use for formatting</param>
         /// <returns>a valid JSON number in a string</returns>
-        public override string ToJson(JsonWriterOptions options)
+        public string ToJson(JsonWriterOptions options)
         {
             return innerDouble.ToString();
         }

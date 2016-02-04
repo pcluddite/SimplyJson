@@ -24,7 +24,7 @@ namespace Tbax.Json
     /// <summary>
     /// A class representation of a Boolean value in JSON. This class can perform most operations directly as a bool implicitly.
     /// </summary>
-    public sealed class JsonBoolean : JsonObject
+    public struct JsonBoolean : IJsonObject
     {
         // REMEMBER NOT TO USE IMPLICIT CONVERSIONS IN THIS CLASS (for safety reasons)
         private bool innerBool;
@@ -52,7 +52,7 @@ namespace Tbax.Json
         /// </summary>
         /// <param name="options">the JsonWriterOptions to use for formatting</param>
         /// <returns>a valid JSON string</returns>
-        public override string ToJson(JsonWriterOptions options)
+        public string ToJson(JsonWriterOptions options)
         {
             return innerBool.ToString();
         }
