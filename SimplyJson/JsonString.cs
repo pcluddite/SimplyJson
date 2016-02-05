@@ -35,7 +35,7 @@ namespace Tbax.Json
         /// <summary>
         /// Initializes a new JsonString object
         /// </summary>
-        /// <param name="value">the string that will be formatted for JSON</param>
+        /// <param name="value">the string that will be formatted for json</param>
         public JsonString(string value)
         {
             innerString = value;
@@ -51,7 +51,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Converts this object to a string that can be used in JSON.
+        /// Converts this object to a string that can be used in json
         /// </summary>
         /// <remarks>
         /// This will add double quotes around the string and format escaped characters.
@@ -69,7 +69,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Converts this object to a string that can be used in JSON
+        /// Converts this object to a string that can be used in json
         /// </summary>
         /// <param name="options">the JsonWriterOptions to use for formatting</param>
         /// <returns>a valid JSON string</returns>
@@ -81,9 +81,9 @@ namespace Tbax.Json
         private static readonly Regex validString = new Regex(@"\""((\\"")|[^""])*\""|\'((\\')|[^'])*\'", RegexOptions.Compiled);
 
         /// <summary>
-        /// Initializes a JsonString object from given JSON. This will return the first valid string.
+        /// Initializes a JsonString object from given json. This will return the first valid string.
         /// </summary>
-        /// <param name="json">JSON to parse</param>
+        /// <param name="json">json to parse</param>
         /// <returns>A JsonString object</returns>
         public static JsonString FromJson(string json)
         {

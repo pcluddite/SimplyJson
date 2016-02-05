@@ -5,12 +5,12 @@ using System.Text;
 namespace Tbax.Json
 {
     /// <summary>
-    /// Represents a null entry in JSON
+    /// Represents a null entry in json
     /// </summary>
     public struct JsonNull : IJsonable
     {
         /// <summary>
-        /// Creates a JsonNull from a given JSON string
+        /// Creates a JsonNull from a given json string
         /// </summary>
         /// <param name="json">JSON to parse</param>
         /// <returns>A JsonNull object</returns>

@@ -22,7 +22,7 @@ using System;
 namespace Tbax.Json
 {
     /// <summary>
-    /// Format options when create JSON strings
+    /// Format options when create json strings
     /// </summary>
     [Flags]
     public enum JsonWriterOptions

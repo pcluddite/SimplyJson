@@ -23,7 +23,7 @@ using System.Text;
 namespace Tbax.Json
 {
     /// <summary>
-    /// This class represents a JSON array containing a variable number of elements
+    /// This class represents a json array containing a variable number of elements
     /// </summary>
     public class JsonArrayList : IJsonable, IList<IJsonable>, ICollection<IJsonable>, IEnumerable<IJsonable>
     {

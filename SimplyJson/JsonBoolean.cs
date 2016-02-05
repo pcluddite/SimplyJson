@@ -22,7 +22,7 @@ using System;
 namespace Tbax.Json
 {
     /// <summary>
-    /// A class representation of a Boolean value in JSON. This class can perform most operations directly as a bool implicitly.
+    /// A class representation of a Boolean value in json. This class can perform most operations directly as a bool implicitly.
     /// </summary>
     public struct JsonBoolean : IJsonable
     {

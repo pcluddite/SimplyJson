@@ -22,7 +22,7 @@ using System;
 namespace Tbax.Json
 {
     /// <summary>
-    /// A class representation of a number value in JSON. This class can perform most operations directly as a double implicitly.
+    /// A class representation of a number value in json. This class can perform most operations directly as a double implicitly.
     /// </summary>
     public struct JsonDouble : IJsonable
     {

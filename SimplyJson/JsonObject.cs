@@ -32,7 +32,7 @@ namespace Tbax.Json
         private Dictionary<string, IJsonable> dict;
 
         /// <summary>
-        /// Initializes a new instance of the JsonMap class that is empty, has the default initial capacity, and uses the default equality comparer for the string.
+        /// Initializes a new instance of the JsonObject class that is empty, has the default initial capacity, and uses the default equality comparer for the string.
         /// </summary>
         public JsonObject()
         {
@@ -40,9 +40,9 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Initializes a new instance of the JsonMap class that is empty, has the specified initial capacity, and uses the default equality comparer for the key type.
+        /// Initializes a new instance of the JsonObject class that is empty, has the specified initial capacity, and uses the default equality comparer for the key type.
         /// </summary>
-        /// <param name="capacity">The initial number of elements that the JsonMap can contain.</param>
+        /// <param name="capacity">The initial number of elements that the JsonObject can contain.</param>
         /// <exception cref="ArgumentOutOfRangeException">capacity is less than 0.</exception>
         public JsonObject(int capacity)
         {
@@ -50,7 +50,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Initializes a new instance of the JsonMap class that is empty, has the default initial capacity, and uses the specified IEqualityComparer&lt;string&gt;
+        /// Initializes a new instance of the JsonObject class that is empty, has the default initial capacity, and uses the specified IEqualityComparer&lt;string&gt;
         /// </summary>
         /// <param name="comparer"></param>
         public JsonObject(IEqualityComparer<string> comparer)
@@ -59,7 +59,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Initializes a new instance of the JsonMap class that contains elements copied from the specified IDictionary&lt;string, IJsonObject&gt; and uses the default equality comparer for the key type.
+        /// Initializes a new instance of the JsonObject class that contains elements copied from the specified IDictionary&lt;string, IJsonable&gt; and uses the default equality comparer for the key type.
         /// </summary>
         /// <param name="dictionary"></param>
         public JsonObject(IDictionary<string, IJsonable> dictionary)
@@ -68,7 +68,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Initializes a new instance of the JsonMap class that is empty, has the specified initial capacity, and uses the specified IEqualityComparer&lt;string&gt;.
+        /// Initializes a new instance of the JsonObject class that is empty, has the specified initial capacity, and uses the specified IEqualityComparer&lt;string&gt;.
         /// </summary>
         /// <param name="capacity"></param>
         /// <param name="comparer"></param>
@@ -78,7 +78,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Initializes a new instance of the JsonMap class that contains elements copied from the specified IDictionary&lt;string, IJsonObject&gt; and uses the specified IEqualityComparer&lt;string&gt;
+        /// Initializes a new instance of the JsonObject class that contains elements copied from the specified IDictionary&lt;string, IJsonable&gt; and uses the specified IEqualityComparer&lt;string&gt;
         /// </summary>
         /// <param name="dictionary"></param>
         /// <param name="comparer"></param>
@@ -86,12 +86,12 @@ namespace Tbax.Json
         {
             dict = new Dictionary<string, IJsonable>(dictionary, comparer);
         }
-        
+
         /// <summary>
-        /// Initializes a JsonMap object from given JSON. This will return the first valid object map.
+        /// Initializes a JsonObject object from given json. This will return the first valid object map.
         /// </summary>
-        /// <param name="json">JSON to parse</param>
-        /// <returns>A JsonMap object</returns>
+        /// <param name="json">json to parse</param>
+        /// <returns>A JsonObject object</returns>
         public static JsonObject FromJson(string json)
         {
             JsonObject jObject = new JsonObject();
@@ -119,10 +119,10 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Converts this JsonMap object to valid a JSON object map
+        /// Converts this JsonObject object to valid a json object map
         /// </summary>
         /// <param name="options">The JsonWriterOptions to acknowledge when formatting.</param>
-        /// <returns>The valid JSON object map as a string</returns>
+        /// <returns>The valid json object map as a string</returns>
         public string ToJson(JsonWriterOptions options)
         {
             bool nospaces = (options & JsonWriterOptions.NoWhitespace) == JsonWriterOptions.NoWhitespace;
@@ -175,7 +175,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Adds an item with the provided key and value to the JsonMap
+        /// Adds an item with the provided key and value to the JsonObject
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
@@ -185,7 +185,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Adds an item with the provided key and value to the JsonMap
+        /// Adds an item with the provided key and value to the JsonObject
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
@@ -195,7 +195,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Adds an item with the provided key and value to the JsonMap
+        /// Adds an item with the provided key and value to the JsonObject
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
@@ -205,7 +205,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Adds an item with the provided key and value to the JsonMap
+        /// Adds an item with the provided key and value to the JsonObject
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
@@ -215,7 +215,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Adds an item with the provided key and value to the JsonMap
+        /// Adds an item with the provided key and value to the JsonObject
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
@@ -225,7 +225,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Adds an item with the provided key and value to the JsonMap
+        /// Adds an item with the provided key and value to the JsonObject
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
@@ -240,7 +240,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Determines whether the JsonMap contains an element with the specified key.
+        /// Determines whether the JsonObject contains an element with the specified key.
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -250,7 +250,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Gets a collection containing the keys in the JsonMap
+        /// Gets a collection containing the keys in the JsonObject
         /// </summary>
         public ICollection<string> Keys
         {
@@ -258,7 +258,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Removes the value with the specified key from the JsonMap
+        /// Removes the value with the specified key from the JsonObject
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -279,7 +279,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Gets a collection containing the values in the JsonMap
+        /// Gets a collection containing the values in the JsonObject
         /// </summary>
         public ICollection<IJsonable> Values
         {
@@ -307,7 +307,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Removes all items from the JsonMap
+        /// Removes all items from the JsonObject
         /// </summary>
         public void Clear()
         {
@@ -325,7 +325,7 @@ namespace Tbax.Json
         }
 
         /// <summary>
-        /// Gets the number of key/value pairs contained in the JsonMap
+        /// Gets the number of key/value pairs contained in the JsonObject
         /// </summary>
         public int Count
         {

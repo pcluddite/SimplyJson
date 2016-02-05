@@ -20,15 +20,15 @@
 namespace Tbax.Json
 {
     /// <summary>
-    /// Interface for objects that can be converted into a valid JSON
+    /// Interface for objects that can be converted into a valid json
     /// </summary>
     public interface IJsonable
     {
         /// <summary>
-        /// Converts the JsonObject into a valid JSON string
+        /// Converts the object into a valid json string
         /// </summary>
         /// <param name="options">When overriden in a derived class, the JsonWriterOptions to acknowledge when formatting.</param>
-        /// <returns>The JSON for this object</returns>
+        /// <returns>The json for this object</returns>
         string ToJson(JsonWriterOptions options);
     }
 }
