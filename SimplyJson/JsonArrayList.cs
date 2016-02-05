@@ -25,23 +25,23 @@ namespace Tbax.Json
     /// <summary>
     /// This class represents a JSON array containing a variable number of elements
     /// </summary>
-    public class JsonArrayList : IJsonObject, IList<IJsonObject>, ICollection<IJsonObject>, IEnumerable<IJsonObject>
+    public class JsonArrayList : IJsonable, IList<IJsonable>, ICollection<IJsonable>, IEnumerable<IJsonable>
     {
-        private List<IJsonObject> objs;
+        private List<IJsonable> objs;
 
         public JsonArrayList()
         {
-            objs = new List<IJsonObject>();
+            objs = new List<IJsonable>();
         }
 
         public JsonArrayList(int capacity)
         {
-            objs = new List<IJsonObject>(capacity);
+            objs = new List<IJsonable>(capacity);
         }
 
-        public JsonArrayList(IEnumerable<IJsonObject> other)
+        public JsonArrayList(IEnumerable<IJsonable> other)
         {
-            objs = new List<IJsonObject>(other);
+            objs = new List<IJsonable>(other);
         }
         
         /// <summary>
@@ -115,12 +115,12 @@ namespace Tbax.Json
             return json.ToString();
         }
 
-        public int IndexOf(IJsonObject item)
+        public int IndexOf(IJsonable item)
         {
             return objs.IndexOf(item);
         }
 
-        public void Insert(int index, IJsonObject item)
+        public void Insert(int index, IJsonable item)
         {
             objs.Insert(index, item);
         }
@@ -130,7 +130,7 @@ namespace Tbax.Json
             objs.RemoveAt(index);
         }
 
-        public IJsonObject this[int index]
+        public IJsonable this[int index]
         {
             get {
                 return objs[index];
@@ -140,7 +140,7 @@ namespace Tbax.Json
             }
         }
 
-        public void Add(IJsonObject item)
+        public void Add(IJsonable item)
         {
             objs.Add(item);
         }
@@ -175,12 +175,12 @@ namespace Tbax.Json
             objs.Clear();
         }
 
-        public bool Contains(IJsonObject item)
+        public bool Contains(IJsonable item)
         {
             return objs.Contains(item);
         }
 
-        public void CopyTo(IJsonObject[] array, int arrayIndex)
+        public void CopyTo(IJsonable[] array, int arrayIndex)
         {
             objs.CopyTo(array, arrayIndex);
         }
@@ -197,12 +197,12 @@ namespace Tbax.Json
             get { return false; }
         }
 
-        public bool Remove(IJsonObject item)
+        public bool Remove(IJsonable item)
         {
             return objs.Remove(item);
         }
 
-        public IEnumerator<IJsonObject> GetEnumerator()
+        public IEnumerator<IJsonable> GetEnumerator()
         {
             return objs.GetEnumerator();
         }

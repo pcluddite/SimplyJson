@@ -24,7 +24,7 @@ namespace Tbax.Json
 {
     static internal class JsonParser
     {
-        internal static IJsonObject ExtractValue(string jsonString)
+        internal static IJsonable ExtractValue(string jsonString)
         {
             if (string.IsNullOrEmpty(jsonString)) {
                 return new JsonNull();

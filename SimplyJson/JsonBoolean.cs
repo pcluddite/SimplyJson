@@ -24,7 +24,7 @@ namespace Tbax.Json
     /// <summary>
     /// A class representation of a Boolean value in JSON. This class can perform most operations directly as a bool implicitly.
     /// </summary>
-    public struct JsonBoolean : IJsonObject
+    public struct JsonBoolean : IJsonable
     {
         // REMEMBER NOT TO USE IMPLICIT CONVERSIONS IN THIS CLASS (for safety reasons)
         private bool innerBool;

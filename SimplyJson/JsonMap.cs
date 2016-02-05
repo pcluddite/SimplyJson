@@ -27,16 +27,16 @@ namespace Tbax.Json
     /// <summary>
     /// This class represents a Json object that contains a set of keys that correspond to an assigned value
     /// </summary>
-    public class JsonMap : IJsonObject, IDictionary<string, IJsonObject>
+    public class JsonMap : IJsonable, IDictionary<string, IJsonable>
     {
-        private Dictionary<string, IJsonObject> dict;
+        private Dictionary<string, IJsonable> dict;
 
         /// <summary>
         /// Initializes a new instance of the JsonMap class that is empty, has the default initial capacity, and uses the default equality comparer for the string.
         /// </summary>
         public JsonMap()
         {
-            dict = new Dictionary<string, IJsonObject>();
+            dict = new Dictionary<string, IJsonable>();
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Tbax.Json
         /// <exception cref="ArgumentOutOfRangeException">capacity is less than 0.</exception>
         public JsonMap(int capacity)
         {
-            dict = new Dictionary<string, IJsonObject>(capacity);
+            dict = new Dictionary<string, IJsonable>(capacity);
         }
 
         /// <summary>
@@ -55,16 +55,16 @@ namespace Tbax.Json
         /// <param name="comparer"></param>
         public JsonMap(IEqualityComparer<string> comparer)
         {
-            dict = new Dictionary<string, IJsonObject>(comparer);
+            dict = new Dictionary<string, IJsonable>(comparer);
         }
 
         /// <summary>
         /// Initializes a new instance of the JsonMap class that contains elements copied from the specified IDictionary&lt;string, IJsonObject&gt; and uses the default equality comparer for the key type.
         /// </summary>
         /// <param name="dictionary"></param>
-        public JsonMap(IDictionary<string, IJsonObject> dictionary)
+        public JsonMap(IDictionary<string, IJsonable> dictionary)
         {
-            dict = new Dictionary<string, IJsonObject>(dictionary);
+            dict = new Dictionary<string, IJsonable>(dictionary);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Tbax.Json
         /// <param name="comparer"></param>
         public JsonMap(int capacity, IEqualityComparer<string> comparer)
         {
-            dict = new Dictionary<string, IJsonObject>(capacity, comparer);
+            dict = new Dictionary<string, IJsonable>(capacity, comparer);
         }
 
         /// <summary>
@@ -82,9 +82,9 @@ namespace Tbax.Json
         /// </summary>
         /// <param name="dictionary"></param>
         /// <param name="comparer"></param>
-        public JsonMap(IDictionary<string, IJsonObject> dictionary, IEqualityComparer<string> comparer)
+        public JsonMap(IDictionary<string, IJsonable> dictionary, IEqualityComparer<string> comparer)
         {
-            dict = new Dictionary<string, IJsonObject>(dictionary, comparer);
+            dict = new Dictionary<string, IJsonable>(dictionary, comparer);
         }
         
         /// <summary>
@@ -179,7 +179,7 @@ namespace Tbax.Json
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public void Add(string key, IJsonObject value)
+        public void Add(string key, IJsonable value)
         {
             __add(key, value);
         }
@@ -234,7 +234,7 @@ namespace Tbax.Json
             __add(key, value);
         }
 
-        private void __add(string key, IJsonObject value)
+        private void __add(string key, IJsonable value)
         {
             dict.Add(key, value);
         }
@@ -273,7 +273,7 @@ namespace Tbax.Json
         /// <param name="key"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public bool TryGetValue(string key, out IJsonObject value)
+        public bool TryGetValue(string key, out IJsonable value)
         {
             return dict.TryGetValue(key, out value);
         }
@@ -281,7 +281,7 @@ namespace Tbax.Json
         /// <summary>
         /// Gets a collection containing the values in the JsonMap
         /// </summary>
-        public ICollection<IJsonObject> Values
+        public ICollection<IJsonable> Values
         {
             get { return dict.Values; }
         }
@@ -291,7 +291,7 @@ namespace Tbax.Json
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public IJsonObject this[string key]
+        public IJsonable this[string key]
         {
             get {
                 return dict[key];
@@ -301,9 +301,9 @@ namespace Tbax.Json
             }
         }
 
-        void ICollection<KeyValuePair<string, IJsonObject>>.Add(KeyValuePair<string, IJsonObject> item)
+        void ICollection<KeyValuePair<string, IJsonable>>.Add(KeyValuePair<string, IJsonable> item)
         {
-            ((IDictionary<string, IJsonObject>)dict).Add(item);
+            ((IDictionary<string, IJsonable>)dict).Add(item);
         }
 
         /// <summary>
@@ -314,14 +314,14 @@ namespace Tbax.Json
             dict.Clear();
         }
 
-        bool ICollection<KeyValuePair<string, IJsonObject>>.Contains(KeyValuePair<string, IJsonObject> item)
+        bool ICollection<KeyValuePair<string, IJsonable>>.Contains(KeyValuePair<string, IJsonable> item)
         {
-            return ((IDictionary<string, IJsonObject>)dict).Contains(item);
+            return ((IDictionary<string, IJsonable>)dict).Contains(item);
         }
 
-        void ICollection<KeyValuePair<string, IJsonObject>>.CopyTo(KeyValuePair<string, IJsonObject>[] array, int arrayIndex)
+        void ICollection<KeyValuePair<string, IJsonable>>.CopyTo(KeyValuePair<string, IJsonable>[] array, int arrayIndex)
         {
-            ((IDictionary<string, IJsonObject>)dict).CopyTo(array, arrayIndex);
+            ((IDictionary<string, IJsonable>)dict).CopyTo(array, arrayIndex);
         }
 
         /// <summary>
@@ -332,21 +332,21 @@ namespace Tbax.Json
             get { return dict.Count; }
         }
 
-        bool ICollection<KeyValuePair<string, IJsonObject>>.IsReadOnly
+        bool ICollection<KeyValuePair<string, IJsonable>>.IsReadOnly
         {
             get { return false; }
         }
 
-        bool ICollection<KeyValuePair<string, IJsonObject>>.Remove(KeyValuePair<string, IJsonObject> item)
+        bool ICollection<KeyValuePair<string, IJsonable>>.Remove(KeyValuePair<string, IJsonable> item)
         {
-            return ((IDictionary<string, IJsonObject>)dict).Remove(item);
+            return ((IDictionary<string, IJsonable>)dict).Remove(item);
         }
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns></returns>
-        public IEnumerator<KeyValuePair<string, IJsonObject>> GetEnumerator()
+        public IEnumerator<KeyValuePair<string, IJsonable>> GetEnumerator()
         {
             return dict.GetEnumerator();
         }

@@ -24,7 +24,7 @@ namespace Tbax.Json
     /// <summary>
     /// A class representation of a number value in JSON. This class can perform most operations directly as a double implicitly.
     /// </summary>
-    public struct JsonDouble : IJsonObject
+    public struct JsonDouble : IJsonable
     {
         private double innerDouble; // REMEMBER NOT TO USE IMPLICIT CONVERSIONS IN THIS CLASS (for safety reasons)
 

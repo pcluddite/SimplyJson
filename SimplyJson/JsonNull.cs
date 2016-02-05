@@ -7,7 +7,7 @@ namespace Tbax.Json
     /// <summary>
     /// Represents a null entry in JSON
     /// </summary>
-    public struct JsonNull : IJsonObject
+    public struct JsonNull : IJsonable
     {
         /// <summary>
         /// Creates a JsonNull from a given JSON string

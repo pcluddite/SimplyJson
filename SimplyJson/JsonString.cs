@@ -27,7 +27,7 @@ namespace Tbax.Json
     /// <summary>
     /// Represents a string to be formatted in JSON
     /// </summary>
-    public sealed class JsonString : IJsonObject
+    public sealed class JsonString : IJsonable
     {
         // REMEMBER NOT TO USE IMPLICIT CONVERSIONS IN THIS CLASS (for safety reasons)
         private string innerString;

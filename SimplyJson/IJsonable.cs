@@ -22,7 +22,7 @@ namespace Tbax.Json
     /// <summary>
     /// Interface for objects that can be converted into a valid JSON
     /// </summary>
-    public interface IJsonObject
+    public interface IJsonable
     {
         /// <summary>
         /// Converts the JsonObject into a valid JSON string
