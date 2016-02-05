@@ -112,6 +112,22 @@ namespace Tbax.Json
             return innerBool == other;
         }
 
+        public override bool Equals(object obj)
+        {
+            JsonBoolean? jb = obj as JsonBoolean?;
+            if (jb != null)
+                return Equals(jb.Value);
+            bool? b = obj as bool?;
+            if (b != null)
+                return Equals(b.Value);
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return innerBool.GetHashCode();
+        }
+
         #region equality ops
 
         /// <summary>
