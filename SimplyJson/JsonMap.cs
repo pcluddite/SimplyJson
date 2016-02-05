@@ -27,7 +27,7 @@ namespace Tbax.Json
     /// <summary>
     /// This class represents a Json object that contains a set of keys that correspond to an assigned value
     /// </summary>
-    public class JsonMap : JsonObject, IDictionary<string, IJsonObject>
+    public class JsonMap : IJsonObject, IDictionary<string, IJsonObject>
     {
         private Dictionary<string, IJsonObject> dict;
 
@@ -123,7 +123,7 @@ namespace Tbax.Json
         /// </summary>
         /// <param name="options">The JsonWriterOptions to acknowledge when formatting.</param>
         /// <returns>The valid JSON object map as a string</returns>
-        public override string ToJson(JsonWriterOptions options)
+        public string ToJson(JsonWriterOptions options)
         {
             bool nospaces = (options & JsonWriterOptions.NoWhitespace) == JsonWriterOptions.NoWhitespace;
             bool onePerLine = (options & JsonWriterOptions.MapItemNewLine) == JsonWriterOptions.MapItemNewLine;

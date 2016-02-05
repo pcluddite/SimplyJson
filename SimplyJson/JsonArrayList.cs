@@ -25,7 +25,7 @@ namespace Tbax.Json
     /// <summary>
     /// This class represents a JSON array containing a variable number of elements
     /// </summary>
-    public class JsonArrayList : JsonObject, IList<IJsonObject>, ICollection<IJsonObject>, IEnumerable<IJsonObject>
+    public class JsonArrayList : IJsonObject, IList<IJsonObject>, ICollection<IJsonObject>, IEnumerable<IJsonObject>
     {
         private List<IJsonObject> objs;
 
@@ -67,7 +67,7 @@ namespace Tbax.Json
         /// </summary>
         /// <param name="options">The JsonWriterOptions to acknowledge when formatting.</param>
         /// <returns>The valid JsonArrayList as a string</returns>
-        public override string ToJson(JsonWriterOptions options)
+        public string ToJson(JsonWriterOptions options)
         {
             bool nospaces = (options & JsonWriterOptions.NoWhitespace) == JsonWriterOptions.NoWhitespace;
             bool onePerLine = (options & JsonWriterOptions.ArrayItemNewLine) == JsonWriterOptions.ArrayItemNewLine;

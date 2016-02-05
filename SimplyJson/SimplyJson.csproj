@@ -37,7 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JsonException.cs" />
-    <Compile Include="JsonObject.cs" />
+    <Compile Include="JsonNull.cs" />
     <Compile Include="JsonWriterOptions.cs" />
     <Compile Include="IJsonObject.cs" />
     <Compile Include="JsonBoolean.cs" />

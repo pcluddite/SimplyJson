@@ -27,7 +27,7 @@ namespace Tbax.Json
         internal static IJsonObject ExtractValue(string jsonString)
         {
             if (string.IsNullOrEmpty(jsonString)) {
-                return JsonObject.Null;
+                return new JsonNull();
             }
             for (int index = 0; index < jsonString.Length; index++) {
                 if (char.IsWhiteSpace(jsonString[index])) {
