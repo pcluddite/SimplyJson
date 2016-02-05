@@ -160,7 +160,7 @@ namespace Tbax.Json
             objs.Add(item);
         }
 
-        public void Add(JsonMap item)
+        public void Add(JsonObject item)
         {
             objs.Add(item);
         }

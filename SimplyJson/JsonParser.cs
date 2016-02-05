@@ -40,7 +40,7 @@ namespace Tbax.Json
                     return JsonArrayList.FromJson(jsonString.Substring(index));
                 }
                 if (jsonString[index] == '{') {
-                    return JsonMap.FromJson(jsonString.Substring(index));
+                    return JsonObject.FromJson(jsonString.Substring(index));
                 }
                 if (jsonString[index] == 't' || jsonString[index] == 'T' ||
                     jsonString[index] == 'f' || jsonString[index] == 'F') {

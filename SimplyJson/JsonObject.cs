@@ -27,14 +27,14 @@ namespace Tbax.Json
     /// <summary>
     /// This class represents a Json object that contains a set of keys that correspond to an assigned value
     /// </summary>
-    public class JsonMap : IJsonable, IDictionary<string, IJsonable>
+    public class JsonObject : IJsonable, IDictionary<string, IJsonable>
     {
         private Dictionary<string, IJsonable> dict;
 
         /// <summary>
         /// Initializes a new instance of the JsonMap class that is empty, has the default initial capacity, and uses the default equality comparer for the string.
         /// </summary>
-        public JsonMap()
+        public JsonObject()
         {
             dict = new Dictionary<string, IJsonable>();
         }
@@ -44,7 +44,7 @@ namespace Tbax.Json
         /// </summary>
         /// <param name="capacity">The initial number of elements that the JsonMap can contain.</param>
         /// <exception cref="ArgumentOutOfRangeException">capacity is less than 0.</exception>
-        public JsonMap(int capacity)
+        public JsonObject(int capacity)
         {
             dict = new Dictionary<string, IJsonable>(capacity);
         }
@@ -53,7 +53,7 @@ namespace Tbax.Json
         /// Initializes a new instance of the JsonMap class that is empty, has the default initial capacity, and uses the specified IEqualityComparer&lt;string&gt;
         /// </summary>
         /// <param name="comparer"></param>
-        public JsonMap(IEqualityComparer<string> comparer)
+        public JsonObject(IEqualityComparer<string> comparer)
         {
             dict = new Dictionary<string, IJsonable>(comparer);
         }
@@ -62,7 +62,7 @@ namespace Tbax.Json
         /// Initializes a new instance of the JsonMap class that contains elements copied from the specified IDictionary&lt;string, IJsonObject&gt; and uses the default equality comparer for the key type.
         /// </summary>
         /// <param name="dictionary"></param>
-        public JsonMap(IDictionary<string, IJsonable> dictionary)
+        public JsonObject(IDictionary<string, IJsonable> dictionary)
         {
             dict = new Dictionary<string, IJsonable>(dictionary);
         }
@@ -72,7 +72,7 @@ namespace Tbax.Json
         /// </summary>
         /// <param name="capacity"></param>
         /// <param name="comparer"></param>
-        public JsonMap(int capacity, IEqualityComparer<string> comparer)
+        public JsonObject(int capacity, IEqualityComparer<string> comparer)
         {
             dict = new Dictionary<string, IJsonable>(capacity, comparer);
         }
@@ -82,7 +82,7 @@ namespace Tbax.Json
         /// </summary>
         /// <param name="dictionary"></param>
         /// <param name="comparer"></param>
-        public JsonMap(IDictionary<string, IJsonable> dictionary, IEqualityComparer<string> comparer)
+        public JsonObject(IDictionary<string, IJsonable> dictionary, IEqualityComparer<string> comparer)
         {
             dict = new Dictionary<string, IJsonable>(dictionary, comparer);
         }
@@ -92,9 +92,9 @@ namespace Tbax.Json
         /// </summary>
         /// <param name="json">JSON to parse</param>
         /// <returns>A JsonMap object</returns>
-        public static JsonMap FromJson(string json)
+        public static JsonObject FromJson(string json)
         {
-            JsonMap jObject = new JsonMap();
+            JsonObject jObject = new JsonObject();
 
             List<string> rawItems = JsonParser.ExtractMap(json);
 
@@ -219,7 +219,7 @@ namespace Tbax.Json
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public void Add(string key, JsonMap value)
+        public void Add(string key, JsonObject value)
         {
             __add(key, value);
         }
