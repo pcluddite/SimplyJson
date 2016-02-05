@@ -24,7 +24,7 @@ namespace Tbax.Json
     /// <summary>
     /// A class representation of a Boolean value in json. This class can perform most operations directly as a bool implicitly.
     /// </summary>
-    public struct JsonBoolean : IJsonable
+    public struct JsonBoolean : IJsonable, IComparable, IComparable<JsonBoolean>, IComparable<bool>, IEquatable<JsonBoolean>, IEquatable<bool>
     {
         // REMEMBER NOT TO USE IMPLICIT CONVERSIONS IN THIS CLASS (for safety reasons)
         private bool innerBool;
@@ -80,6 +80,63 @@ namespace Tbax.Json
                 throw JsonException.UnexpectedJson();
             }
         }
+
+        public int CompareTo(object obj)
+        {
+            JsonBoolean? jb = obj as JsonBoolean?;
+            if (jb != null)
+                return CompareTo(jb.Value);
+            bool? b = obj as bool?;
+            if (b != null)
+                return CompareTo(b.Value);
+            throw new ArgumentException("can only compare types JsonBoolean and bool", nameof(obj));
+        }
+
+        public int CompareTo(JsonBoolean other)
+        {
+            return innerBool.CompareTo(other.innerBool);
+        }
+        
+        public bool Equals(JsonBoolean other)
+        {
+            return innerBool == other.innerBool;
+        }
+
+        public int CompareTo(bool other)
+        {
+            return innerBool.CompareTo(other);
+        }
+
+        public bool Equals(bool other)
+        {
+            return innerBool == other;
+        }
+
+        #region equality ops
+
+        /// <summary>
+        /// Determines if the bool values that two JsonBoolean objects represent are equal 
+        /// </summary>
+        /// <param name="first">The first JsonBoolean to compare</param>
+        /// <param name="second">The second JsonBoolean to compare</param>
+        /// <returns>True if the bool values are equal, otherwise false</returns>
+        public static bool operator ==(JsonBoolean first, JsonBoolean second)
+        {
+            return first.innerBool == second.innerBool;
+        }
+
+        /// <summary>
+        /// Determines if the bool values that two JsonBoolean objects represent are not equal 
+        /// </summary>
+        /// <param name="first">The first JsonBoolean to compare</param>
+        /// <param name="second">The second JsonBoolean to compare</param>
+        /// <returns>True if the bool values are not equal, otherwise false</returns>
+        public static bool operator !=(JsonBoolean first, JsonBoolean second)
+        {
+            return first.innerBool != second.innerBool;
+        }
+
+        #endregion
 
         /// <summary>
         /// Implicitly converts a JsonBoolean into the bool that it represents

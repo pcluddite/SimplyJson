@@ -24,7 +24,7 @@ namespace Tbax.Json
     /// <summary>
     /// A class representation of a number value in json. This class can perform most operations directly as a double implicitly.
     /// </summary>
-    public struct JsonDouble : IJsonable
+    public struct JsonDouble : IJsonable, IEquatable<JsonDouble>, IEquatable<double>, IComparable, IComparable<JsonDouble>, IComparable<double>
     {
         private double innerDouble; // REMEMBER NOT TO USE IMPLICIT CONVERSIONS IN THIS CLASS (for safety reasons)
 
@@ -133,6 +133,47 @@ namespace Tbax.Json
         }
 
         /// <summary>
+        /// Determines whether the specified JsonDouble is equal to the current JsonDouble. A JsonDouble is equal if it represents the same double value.
+        /// </summary>
+        /// <param name="other">The JsonDouble to compare to the current JsonDouble</param>
+        /// <returns></returns>
+        public bool Equals(JsonDouble other)
+        {
+            return innerDouble == other.innerDouble;
+        }
+
+        /// <summary>
+        /// Determines whether the specified double is equal to the current JsonDouble. A JsonDouble is equal if it represents the same double value.
+        /// </summary>
+        /// <param name="other">The double to compare to the current JsonDouble</param>
+        /// <returns></returns>
+        public bool Equals(double other)
+        {
+            return innerDouble == other;
+        }
+
+        public int CompareTo(object obj)
+        {
+            JsonDouble? jd = obj as JsonDouble?;
+            if (jd != null)
+                return CompareTo(jd.Value);
+            double? d = obj as double?;
+            if (d != null)
+                return CompareTo(d.Value);
+            throw new ArgumentException("can only compare JsonDouble or double", nameof(obj));
+        }
+
+        public int CompareTo(JsonDouble other)
+        {
+            return innerDouble.CompareTo(other.innerDouble);
+        }
+
+        public int CompareTo(double other)
+        {
+            return innerDouble.CompareTo(other);
+        }
+
+        /// <summary>
         /// Returns a new JsonDouble object as the deincrement operation is performed on the double it represents
         /// </summary>
         /// <param name="first">the JsonDouble to deincrement</param>
@@ -151,6 +192,8 @@ namespace Tbax.Json
         {
             return new JsonDouble(first.innerDouble++);
         }
+
+        #region equality ops
 
         /// <summary>
         /// Determines if the double values that two JsonDouble objects represent are equal 
@@ -218,6 +261,10 @@ namespace Tbax.Json
             return first.innerDouble >= second.innerDouble;
         }
 
+        #endregion
+
+        #region arithmetic ops
+
         /// <summary>
         /// Performs a modulus operation on the double values that two JsonDouble objects represent
         /// </summary>
@@ -272,6 +319,8 @@ namespace Tbax.Json
         {
             return new JsonDouble(first.innerDouble * second.innerDouble);
         }
+
+        #endregion
 
         /// <summary>
         /// Implicitly converts a JsonDouble into the double that it represents
