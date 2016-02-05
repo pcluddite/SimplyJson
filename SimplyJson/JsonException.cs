@@ -22,18 +22,35 @@ using System.Runtime.Serialization;
 
 namespace Tbax.Json
 {
+    /// <summary>
+    /// Represents a FormatException pertaining to Tbax.Json parsing
+    /// </summary>
     public class JsonException : FormatException
     {
+        /// <summary>
+        /// Initializes a new JsonException with a specified message
+        /// </summary>
+        /// <param name="message">the message for this exception</param>
         public JsonException(string message)
             : base(message)
         {
         }
 
+        /// <summary>
+        /// Initializes a new JsonException with a specified message and inner exception
+        /// </summary>
+        /// <param name="message">the message for this exception</param>
+        /// <param name="innerException">inner exception</param>
         public JsonException(string message, Exception innerException)
             : base(message, innerException)
         {
         }
 
+        /// <summary>
+        /// Initializes a JsonException with serialization data
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
         public JsonException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
