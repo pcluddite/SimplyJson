@@ -168,7 +168,7 @@ namespace Tbax.Json
         /// Implicitly converts a bool into a JsonBoolean representing it
         /// </summary>
         /// <param name="b">the bool value</param>
-        /// <returns>the JsonBoolean representing the given double</returns>
+        /// <returns>the JsonBoolean representing the given bool</returns>
         public static implicit operator JsonBoolean(bool b)
         {
             return new JsonBoolean(b);

@@ -155,7 +155,7 @@ namespace Tbax.Json
             objs.Add(item);
         }
 
-        public void Add(JsonDouble item)
+        public void Add(JsonNumber item)
         {
             objs.Add(item);
         }

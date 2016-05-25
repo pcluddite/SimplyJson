@@ -209,7 +209,7 @@ namespace Tbax.Json
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public void Add(string key, JsonDouble value)
+        public void Add(string key, JsonNumber value)
         {
             __add(key, value);
         }

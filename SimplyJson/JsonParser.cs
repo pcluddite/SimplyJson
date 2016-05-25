@@ -47,7 +47,7 @@ namespace Tbax.Json
                     return JsonBoolean.FromJson(AdvanceToNextDelim(jsonString.Substring(index)));
                 }
                 if (char.IsNumber(jsonString[index])) {
-                    return JsonDouble.FromJson(AdvanceToNextDelim(jsonString.Substring(index)));
+                    return JsonNumber.FromJson(AdvanceToNextDelim(jsonString.Substring(index)));
                 }
             }
             throw JsonException.InvalidCollection();

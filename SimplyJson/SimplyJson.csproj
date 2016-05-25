@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tbax.Json</RootNamespace>
     <AssemblyName>SimplyJson</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -36,6 +36,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JsonConverter.cs" />
     <Compile Include="JsonException.cs" />
     <Compile Include="JsonNull.cs" />
     <Compile Include="JsonWriterOptions.cs" />

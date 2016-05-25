@@ -61,7 +61,7 @@ namespace Tbax.Json
         public string ToJSON()
         {
             if (innerString.Contains("\"")) {
-                return string.Format("'{0}'", FormatAsJsonString(innerString, '\''));
+                return string.Format("'{0}'", TOCString(innerString, '\''));
             }
             else {
                 return string.Format("\"{0}\"", FormatAsJsonString(innerString));
@@ -90,7 +90,7 @@ namespace Tbax.Json
 
             foreach (Match m in validString.Matches(json)) {
                 return new JsonString(
-                    FormatAsNormalString(m.Value.Trim().Substring(1, m.Value.Length - 2))
+                    FromCString(m.Value.Trim().Substring(1, m.Value.Length - 2))
                     );
             }
 
@@ -120,14 +120,14 @@ namespace Tbax.Json
         internal static string FormatAsJsonString(string s)
         {
             if (s.Contains("\"")) {
-                return FormatAsJsonString(s, '\'');
+                return TOCString(s, '\'');
             }
             else {
-                return FormatAsJsonString(s, '"');
+                return TOCString(s, '"');
             }
         }
 
-        internal static string FormatAsJsonString(string str, char quote)
+        internal static string TOCString(string str, char quote)
         {
             StringBuilder sb = new StringBuilder();
             char last = '\0';
@@ -171,7 +171,7 @@ namespace Tbax.Json
             return sb.ToString();
         }
 
-        internal static string FormatAsNormalString(string str)
+        internal static string FromCString(string str)
         {
             StringBuilder sb = new StringBuilder();
             for (int index = 0; index < str.Length; index++) {
